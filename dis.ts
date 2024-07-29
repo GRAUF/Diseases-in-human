@@ -1,11 +1,12 @@
 #! /usr/bin/env node
 
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import { table } from 'console';
-import moment from 'moment';
+import inquirer from 'inquirer'; //inquirer config file install.(for ask questions)
+import chalk from 'chalk';      //chalk config file install.    (chalk for Animation text)
+import { table } from 'console';//table config file install.    (print table format)
+import moment from 'moment';    //moment config file install.   (The moment().weekYear() Method is used to get or set the current week-year of the Moment. This method is Locale-aware meaning that the first day of the week can be a Sunday or Monday depending on the Locale of the Moment. This may cause the week-year to differ as the first day of the first week may not fall on the first day of the year depending on the Locale.)
 
-// Define a list of diseases and their medications
+// data of Disease & his suitable Madison's list.
+
 const diseases = [
   { name:  "Asthma", medication: 'Albuterol' },
   { name: 'Bronchitis', medication: 'Rondec- C, Suduri' },
@@ -45,10 +46,10 @@ const diseases = [
   { name: 'Epilepsy',medication: 'teril tablets 200mg '},
   { name: 'Piles',medication: 'doxium capsules ,hemokit oral drops'}
 
-  // ... add more diseases up to 100
 ];
 
-// Function to print the patient slip
+//print slip with data enter.
+
 function printPatientSlip(patient: any) {
   console.log(chalk.green('--- Patient Slip ---'));
   console.log(`Name: ${patient.name}`);
@@ -60,7 +61,8 @@ function printPatientSlip(patient: any) {
   console.log(chalk.green('---------------------'));
 }
 
-// Function to ask patient details
+//asking important questions for patient history & Diseases selecting area.
+
 async function askPatientDetails() {
   const patientDetails = await inquirer.prompt([
     {
@@ -73,6 +75,8 @@ async function askPatientDetails() {
       name: 'age',
       message: 'Enter patient age:'
     },
+// list of disease input Area.use Array function for listing.
+
     {
       type: 'list',
       name: 'disease',
@@ -116,12 +120,18 @@ async function askPatientDetails() {
   "Piles",
 ]
     },
+// doctor name select in here.
+
     {
       type: 'input',
       name: 'doctor',
       message: 'Enter doctor name:'
     }
   ]);
+
+//The moment().weekYear() Method is used to get or set the current week-year of the Moment. 
+// This method is Locale-aware meaning that the first day of the week can be a Sunday or Monday depending on the Locale of the Moment. 
+//This may cause the week-year to differ as the first day of the first week may not fall on the first day of the year depending on the Locale.
 
   const selectedDisease = diseases.find(d => d.name === patientDetails.disease);
   const date = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -133,7 +143,8 @@ async function askPatientDetails() {
   };
 }
 
-// Function to show menu and handle user choices
+// patient choice 1# select details,2#print detail,3# exit.(call 3 functions in here details,print,exit )
+
 async function showMenu() {
   let continueRunning = true;
   const patientData: any[] = [];
@@ -165,5 +176,6 @@ async function showMenu() {
   }
 }
 
-// Start the program
+// show final result all input data.
+
 showMenu();

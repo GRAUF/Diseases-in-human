@@ -3,7 +3,6 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import { table } from 'console';
 import moment from 'moment';
-// Define a list of diseases and their medications
 const diseases = [
     { name: "Asthma", medication: 'Albuterol' },
     { name: 'Bronchitis', medication: 'Rondec- C, Suduri' },
@@ -42,9 +41,7 @@ const diseases = [
     { name: 'Zika virus', medication: 'arinac forte tablets' },
     { name: 'Epilepsy', medication: 'teril tablets 200mg ' },
     { name: 'Piles', medication: 'doxium capsules ,hemokit oral drops' }
-    // ... add more diseases up to 100
 ];
-// Function to print the patient slip
 function printPatientSlip(patient) {
     console.log(chalk.green('--- Patient Slip ---'));
     console.log(`Name: ${patient.name}`);
@@ -55,7 +52,6 @@ function printPatientSlip(patient) {
     console.log(`Date: ${patient.date}`);
     console.log(chalk.green('---------------------'));
 }
-// Function to ask patient details
 async function askPatientDetails() {
     const patientDetails = await inquirer.prompt([
         {
@@ -125,7 +121,6 @@ async function askPatientDetails() {
         date
     };
 }
-// Function to show menu and handle user choices
 async function showMenu() {
     let continueRunning = true;
     const patientData = [];
@@ -154,5 +149,4 @@ async function showMenu() {
         }
     }
 }
-// Start the program
 showMenu();
